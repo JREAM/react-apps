@@ -4,18 +4,7 @@
         "jsx": "react",
         "moduleResolution": "Node",
         "paths": {
-          "@/*": [
-            "src/*"
-          ],
-          "@/components/*": [
-            "src/components/*"
-          ],
-          "@/styles/*": [
-            "src/styles/*"
-          ],
-          "@/src/types/*": [
-            "src/types/*"
-          ]
+          "@/*": ["src/*"]
         },
         "strict": true,
         "target": "ESNext",

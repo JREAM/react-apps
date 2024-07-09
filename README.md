@@ -1,18 +1,26 @@
 # React Password Generator
 
-- Vite Transpiler
-- TypeScript
--
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+ 📖 **[Preview Project](https://jream.github.io/react-passwd/)**
+
+## Installation
+
+I am using [PNPM](https://pnpm.io/). Run the following:
 
 ```bash
 pnpm i
 pnpm start
-pnpm build
+
+# For NPM
+npm i
+npm run start
 ```
 
 ## Deploy to GH-Pages
 
-At the moment I'm using Vite so I modify `vite.config.ts` with the proper `base` URL so that it appears on GH-Pages without a invalid `text/html` MIME type.
+At the moment I'm using [Vite](https://vitejs.dev/) and a minimal React setup. I modify `vite.config.ts` with the `base` URL set to `./` so that it appears on GH-Pages without a invalid `text/html` MIME type.
 
 These two items in `package.json` are part of the `gh-pages` npm package:
 
@@ -25,6 +33,5 @@ Simply run, `npm run deploy` and it will create a branch and transpile the proje
 
 ---
 
-MIT Open Source
-
-&copy; 2024 JREAM | Jesse Boyer
+> MIT Open Source
+> &copy; 2024 [JREAM](https://jream.com) | Jesse Boyer
