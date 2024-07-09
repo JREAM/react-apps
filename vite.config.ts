@@ -3,13 +3,12 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import path from 'path'
 
 export default defineConfig({
-    plugins:[
-        tsconfigPaths()
-    ],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'src')
-        }
-    }
-});
+  plugins: [tsconfigPaths()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  base: 'https://jream.github.io/react-passwd/',
+})
 
