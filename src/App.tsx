@@ -11,65 +11,96 @@ export default () => {
     numbers: true,
     symbols: true,
     length: 8,
-    startWithLetter: false,
-    startWithNumber: false,
+    startWith: 'letter',
   })
 
+  /** Onload fill password */
   useEffect(() => {
     generatePassword()
     console.log('useEffect Load: Create Password')
   }, [])
 
+  /** Main logic */
   const generatePassword = () => {
-    let availableChars = ''
-    availableChars += settings.lowercase ? 'abcdefghijklmnopqrstuvwxyz' : ''
-    availableChars += settings.uppercase ? 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' : ''
-    availableChars += settings.numbers ? '0123456789' : ''
-    availableChars += settings.symbols ? '!@#$%^&*()' : ''
+    const { uppercase, lowercase, symbols, numbers, startWith } = settings
+    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz'
+    const symbolChars = '!@#$%^&*()'
+    const numberChars = '0123456789'
 
-    if (!availableChars) {
-      setPassword('You must select an option')
+    let charPool = ''
+    let newPassword = ''
+
+    if (startWith === 'symbol') {
+      newPassword += symbolChars.charAt(Math.floor(Math.random() * symbolChars.length))
+    } else if (startWith === 'letter') {
+      const letters = uppercaseChars + lowercaseChars
+      newPassword += letters.charAt(Math.floor(Math.random() * letters.length))
+    } else if (startWith === 'number') {
+      newPassword += numberChars.charAt(Math.floor(Math.random() * numberChars.length))
+    }
+
+    if (charPool === '' && newPassword === '') {
+      setPassword('Oops! Select character type(s)')
       return
     }
 
-    let newPassword = ''
-    for (let i = 0; i < settings.length; i++) {
-      newPassword += availableChars.charAt(Math.floor(Math.random() * availableChars.length))
+    const remainingLength = 12 - newPassword.length
+    // const remainingLength = 12 - newPassword.length
+    for (let i = 0; i < remainingLength; i++) {
+      newPassword += charPool.charAt(Math.floor(Math.random() * charPool.length))
     }
-    setPassword(newPassword)
+
+    setPassword(
+      newPassword
+        .split('')
+        .sort(() => Math.random() - 0.5)
+        .join('')
+    )
   }
 
-  const onChangeRange = (event: any) => {
-    const {value} = event.target
-    setSettings({...settings, length: value})
+  /** Handle Range Adjustment */
+  const handleRangeChange = (event: any) => {
+    const { value } = event.target
+    setSettings({ ...settings, length: value })
     generatePassword()
   }
 
-  const copyPassword = async() => {
-    if ("clipboard" in navigator) {
+  /** Copy Password to Clipboard */
+  const copyPassword = async () => {
+    if ('clipboard' in navigator) {
       await navigator.clipboard.writeText(password)
       return
     }
     console.log('Problem w/clipboard')
   }
 
-  const onChangeSettings = (event: any) => {
-    const isChecked = event.target.checked
+  /** Toggle the Buttons */
+  const handleSettingsChange = (event: any) => {
+    const { name, id, value, type, checked } = event.target
 
-    if (['startWithLetter', 'startWithNumber'].includes(event.target.name)) {
-      setSettings({...settings, [event.target.name]: isChecked})
-      console.log(1)
+    // 1. Preserve existing values (...spread)
+    // 2. Save the value
+    //   a. If checkbox use boolean value of checked
+    //   b. If not use the value
+    setSettings({
+      ...settings, // Preserve existing values
+      [id]: type === 'checkbox' ? checked : value,
+    })
+
+    // @TODO
+    // If startWith is set to letter/number/symbol make sure the box is ticked
+    if (id === 'startWith' && checked !== false) {
+      if (['letter', 'number', 'symbol'].includes(value)) {
+        setSettings({ ...settings, [value]: checked })
+      }
     }
 
-    setSettings({
-      ...settings,
-      [event.target.id]: Boolean(isChecked)
-    })
-    generatePassword( )
+    generatePassword()
     console.log(settings)
-    console.log(`event = ${event.target.id}: ${isChecked}`)
+    console.log(`event = ${id}: ${checked}`)
     // @ts-ignore
-    console.log(`settings[${event.target.name}] = ${settings[event.target.id]}`)
+    console.log(`settings[${name}] = ${settings[id]}`)
     console.log('@TODO: The state value is one iteration behind')
   }
 
@@ -78,7 +109,7 @@ export default () => {
       <div className='row'>
         <div className='col text-center'>
           <h1>Password Generator</h1>
-          <p>Hard to get more minimal than this React app.</p>
+          <p>Simple Password Generator in React.</p>
         </div>
       </div>
       <div className='row'>
@@ -115,7 +146,7 @@ export default () => {
           </label>
           <input
             type='range'
-            onChange={onChangeRange}
+            onChange={handleRangeChange}
             className='form-range'
             min='6'
             max='32'
@@ -126,23 +157,23 @@ export default () => {
       </div>
       <div className='row offset-4 margin-top'>
         <div className='col-auto'>
-          <CheckboxSetting name='uppercase' checked={settings.uppercase} onChange={onChangeSettings} />
-          <CheckboxSetting name='lowercase' checked={settings.lowercase} onChange={onChangeSettings} />
+          <CheckboxSetting name='uppercase' checked={settings.uppercase} onChange={handleSettingsChange} />
+          <CheckboxSetting name='lowercase' checked={settings.lowercase} onChange={handleSettingsChange} />
         </div>
         <div className='col-auto'>
-          <CheckboxSetting name='numbers' checked={settings.numbers} onChange={onChangeSettings} />
-          <CheckboxSetting name='symbols' checked={settings.symbols} onChange={onChangeSettings} />
+          <CheckboxSetting name='numbers' checked={settings.numbers} onChange={handleSettingsChange} />
+          <CheckboxSetting name='symbols' checked={settings.symbols} onChange={handleSettingsChange} />
         </div>
         <div className='col-auto'>
           <div className='form-check form-switch'>
             <input
-              name='forceStartWith'
+              name='startWith'
               id='startWithLetter'
               className='form-check-input'
-              onChange={onChangeSettings}
+              onChange={handleSettingsChange}
               type='radio'
               role='switch'
-              checked={settings.startWithLetter}
+              checked={settings.startWith === 'letter' ? true : false}
             />
             <label className='form-check-label' htmlFor='startWithLetter'>
               Start with Letter
@@ -150,16 +181,30 @@ export default () => {
           </div>
           <div className='form-check form-switch'>
             <input
-              name='forceStartWith'
+              name='startWith'
               id='startWithNumber'
               className='form-check-input'
-              onChange={onChangeSettings}
+              onChange={handleSettingsChange}
               type='radio'
               role='switch'
-              checked={settings.startWithNumber}
+              checked={settings.startWith === 'number' ? true : false}
             />
             <label className='form-check-label' htmlFor='startWithNumber'>
               Start with Number
+            </label>
+          </div>
+          <div className='form-check form-switch'>
+            <input
+              name='startWith'
+              id='startWithSymbol'
+              className='form-check-input'
+              onChange={handleSettingsChange}
+              type='radio'
+              role='switch'
+              checked={settings.startWith === 'symbol' ? true : false}
+            />
+            <label className='form-check-label' htmlFor='startWithSymbol'>
+              Start with Symbol
             </label>
           </div>
         </div>

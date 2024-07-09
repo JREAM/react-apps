@@ -1,19 +1,25 @@
 import * as React from 'react'
 
-export default function CheckboxSetting({name , onChange, checked = false}: any) {
+interface ICheckbox {
+  name: string
+  onChange: (event: any) => void
+  checked?: boolean
+}
+
+export default function CheckboxSetting(obj: ICheckbox) {
   return (
     <div className='form-check form-switch'>
       <input
-        name={name}
-        id={name}
+        name={obj.name}
+        id={obj.name}
         className='form-check-input'
-        onChange={onChange}
+        onChange={obj.onChange}
         type='checkbox'
         role='switch'
-        checked={checked}
+        checked={obj.checked}
       />
-      <label className='form-check-label' htmlFor={name}>
-        {name}
+      <label className='form-check-label' htmlFor={obj.name}>
+        {obj.name}
       </label>
     </div>
   )
