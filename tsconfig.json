@@ -1,19 +1,26 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./src",
-        "jsx": "react",
-        "moduleResolution": "Node",
-        "paths": {
-          "@/*": ["src/*"]
-        },
-        "strict": true,
-        "target": "ESNext",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "react",
+    "moduleResolution": "Node",
+    "paths": {
+      "@/*": ["src/*"]
     },
-    "include": [
-      "src/**/*"
-    ],
-    "exclude": [
-      "node_modules"
-    ],
-
+    "strict": true,
+    "target": "ESNext",
+    // Allow import from X when no default export defined
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
