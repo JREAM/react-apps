@@ -21,6 +21,11 @@ export default function Root() {
                   Password
                 </NavLink>
               </li>
+              <li className='nav-item'>
+                <NavLink to='/todo' className='nav-link'>
+                  Todo
+                </NavLink>
+              </li>
             </ul>
           </nav>
           <main className='col-md-9 ml-sm-auto col-lg-10 pt-3 px-4' role='main'>

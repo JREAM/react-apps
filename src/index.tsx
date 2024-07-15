@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './routes/root'
 import ErrorPage from './error-page'
 import Password from 'routes/password'
+import Todo from 'routes/todo'
 import Home from 'routes/home'
 
 import './index.css'
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: 'password',
         element: <Password />,
+      },
+      {
+        path: 'todo',
+        element: <Todo />,
       },
     ],
   },
