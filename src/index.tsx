@@ -9,6 +9,7 @@ import Home from 'routes/home'
 import Dictionary from 'routes/dictionary'
 import Password from 'routes/password'
 import Stopwatch from 'routes/stopwatch'
+import TextSearch from 'routes/textSearch'
 import Todo from 'routes/todo'
 
 import './index.css'
@@ -32,12 +33,16 @@ const router = createBrowserRouter([
         element: <Password />,
       },
       {
-        path: 'todo',
-        element: <Todo />,
-      },
-      {
         path: 'stopwatch',
         element: <Stopwatch />,
+      },
+      {
+        path: 'textsearch',
+        element: <TextSearch />,
+      },
+      {
+        path: 'todo',
+        element: <Todo />,
       },
     ],
   },

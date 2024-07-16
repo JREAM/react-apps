@@ -43,6 +43,11 @@ export default function Root() {
                   Todo
                 </NavLink>
               </li>
+              <li className='nav-item'>
+                <NavLink to='/textsearch' className='nav-link'>
+                  Text Search
+                </NavLink>
+              </li>
             </ul>
           </nav>
           <main className='col-md-9 ml-sm-auto col-lg-10 pt-3 px-4' role='main'>

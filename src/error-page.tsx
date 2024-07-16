@@ -6,13 +6,15 @@ export default function ErrorPage() {
   // console.error(error)
 
   return (
-    <div id='error-page'>
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        {/* @ts-ignore */}
-        <i>{error?.statusText || error?.message}</i>
-      </p>
+    <div className='container-fluid position-relative mt-5'>
+      <div className='text-center'>
+        <h1>Yikes!</h1>
+        <p>Sorry, there was an unexpected error. </p>
+        <p>
+          {/* @ts-ignore */}
+          <code>{error?.statusText || error?.message}</code>
+        </p>
+      </div>
     </div>
   )
 }

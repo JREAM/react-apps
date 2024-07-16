@@ -1,3 +1,4 @@
+
 body {
   font-size: .95rem;
 }
@@ -37,3 +38,9 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+
+/* For the Highlight Text Search */
+mark {
+  padding: 0;
+}
