@@ -5,14 +5,14 @@ Having in a little playground fun making small components for demo purposes.
 - **Preview:** [https://jream.github.io/react-apps/](https://jream.github.io/react-apps/)
 - [Vite](https://vitejs.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- React 18
-- React Router
+- [PNPM](https://pnpm.io/)
+- [React](https://react.dev/)
+- [React Router](https://reactrouter.com/en/main)
 
 ## Installation
 
-I am using [PNPM](https://pnpm.io/). Run the following:
-
 ```bash
+# For PNPM
 pnpm i
 pnpm start
 
@@ -23,10 +23,9 @@ npm run start
 
 ## Deploy
 
-I normally deploy to Vercel but I'm using Github Pages at the moment. The npm package `gh-pages` make this very nice.
+I normally deploy to [Vercel](https://vercel.com/) but I'm using [GitHub](https://github.com/) Pages at the moment. The npm package `gh-pages` make this very nice.
 
-At the moment I'm using [Vite](https://vitejs.dev/) and a minimal React setup. I modify `vite.config.ts` with the `base` URL set to `./` so that it appears on GH-Pages without a invalid `text/html` MIME type.
-
+At the moment I'm using [Vite](https://vitejs.dev/) and a minimal React setup.
 These two items in `package.json` are part of the `gh-pages` npm package:
 
 ```json
@@ -35,6 +34,15 @@ These two items in `package.json` are part of the `gh-pages` npm package:
 ```
 
 Simply run, `npm run deploy` and it will create a branch and transpile the project.
+
+### In GitHub Pages
+
+- Add the URL for `homepage` in `package.json`
+- Add a `404.html` by adding in `build`: `... cp dist/index.html dist/404.html`
+- Change `createBrowserRouter` to `createHashRouter`
+- There is a delay when the page is updated.
+- I modified `vite.config.ts` with the `base` URL set to `./`
+  - Allows it to appear on GitHub Pages without getting an invalid `text/html` MIME type.
 
 ---
 
