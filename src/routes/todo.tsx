@@ -67,6 +67,14 @@ export default function TaskList() {
   return (
     <div>
       <h2>Task List</h2>
+      <ul>
+        <li>
+          Saves to <code>localStorage</code>
+        </li>
+        <li>
+          Listens for <kbd>Enter</kbd> and <kbd>Escape</kbd>
+        </li>
+      </ul>
       <div className='input-group mb-3'>
         <input
           className='form-control'
