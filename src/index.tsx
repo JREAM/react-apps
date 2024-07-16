@@ -6,6 +6,7 @@ import Root from './routes/root'
 import ErrorPage from './error-page'
 import Home from 'routes/home'
 
+import Dictionary from 'routes/dictionary'
 import Password from 'routes/password'
 import Stopwatch from 'routes/stopwatch'
 import Todo from 'routes/todo'
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <Home />,
+      },
+      {
+        path: 'dictionary',
+        element: <Dictionary />,
       },
       {
         path: 'password',

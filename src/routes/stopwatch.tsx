@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
+interface Record {
+  time: number
+  difference: number
+}
+
 export default () => {
   const [time, setTime] = useState<number>(0)
   const [running, setRunning] = useState<boolean>(false)
-  const [laps, setLaps] = useState<number[]>([])
-  const [history, setHistory] = useState<number[]>(() => {
+  const [laps, setLaps] = useState<Record[]>([])
+  const [history, setHistory] = useState<Record[]>(() => {
     const storedHistory = localStorage.getItem('stopwatchHistory')
     return storedHistory ? JSON.parse(storedHistory) : []
   })
@@ -45,19 +50,20 @@ export default () => {
   }
 
   const lapStopwatch = () => {
-    setLaps([...laps, time])
+    setLaps((prevLaps) => {
+      const lastLap = prevLaps[0]
+      const difference = lastLap ? time - lastLap.time : time
+      return [{ time, difference }, ...prevLaps]
+    })
   }
 
   const addRecordToHistory = (newRecord: number) => {
     setHistory((prevHistory) => {
-      const updatedHistory = [newRecord, ...prevHistory]
+      const lastRecord = prevHistory[0]
+      const difference = lastRecord ? newRecord - lastRecord.time : newRecord
+      const updatedHistory = [{ time: newRecord, difference }, ...prevHistory]
       return updatedHistory.slice(0, 10) // Keep only the last 10 records
     })
-  }
-
-  const clearHistory = () => {
-    setHistory([])
-    localStorage.setItem('stopwatchHistory', JSON.stringify({}))
   }
 
   const formatTime = (time: number) => {
@@ -68,11 +74,16 @@ export default () => {
     return `${getMinutes}:${getSeconds}.${getMilliseconds}`
   }
 
+  const clearHistory = () => {
+    setHistory([])
+    localStorage.setItem('stopwatchHistory', JSON.stringify({}))
+  }
+
   return (
     <div>
       <h1>Stopwatch</h1>
-      <ul>
-        <li>Stop Watch to track one or many laps.</li>
+      <ul className='list-group'>
+        <li>Time one one or many laps.</li>
         <li>
           Saves to <code>localStorage</code> when stopped.
         </li>
@@ -80,25 +91,25 @@ export default () => {
       <div>
         <h1>{formatTime(time)}</h1>
       </div>
-      <div>
+      <div className='btn-group' role='group'>
         {!running ? (
-          <button className='btn btn-primary' onClick={startStopwatch}>
+          <button className='btn btn-outline-primary' onClick={startStopwatch}>
             Start
           </button>
         ) : (
-          <button className='btn btn-danger' onClick={stopStopwatch}>
+          <button className='btn btn-outline-danger' onClick={stopStopwatch}>
             Stop
           </button>
         )}
         {running && (
-          <button className='btn btn-warning' onClick={lapStopwatch}>
+          <button className='btn btn-outline-primary' onClick={lapStopwatch}>
             Lap
           </button>
         )}
-        <button className='btn btn-info' onClick={resetStopwatch}>
+        <button className='btn btn-outline-primary' onClick={resetStopwatch}>
           Reset
         </button>
-        <button className='btn btn-danger' onClick={clearHistory}>
+        <button className='btn btn-outline-primary' onClick={clearHistory}>
           Clear History
         </button>
       </div>
@@ -110,12 +121,13 @@ export default () => {
               <>
                 {laps.map((lap, index) => (
                   <li key={index} className='list-group-item d-flex justify-content-between align-items-center'>
-                    <strong>Lap {index + 1}</strong>: {formatTime(lap)}
+                    <strong>Lap {index + 1}</strong> {formatTime(lap.time)}
+                    <small className='badge text-bg-primary'>+{formatTime(lap.difference)}</small>
                   </li>
                 ))}
               </>
             )}
-            {laps.length === 0 && <li className='list-group-item'>No records found</li>}
+            {laps.length === 0 && <li className='list-group-item'>No records.</li>}
           </ul>
         </div>
         <div className='col col-md-4'>
@@ -125,12 +137,13 @@ export default () => {
               <>
                 {history.map((record, index) => (
                   <li key={index} className='list-group-item d-flex justify-content-between align-items-center'>
-                    {formatTime(record)}
+                    {formatTime(record.time)}
+                    <small className='badge text-bg-primary'>+{formatTime(record.difference)}</small>
                   </li>
                 ))}
               </>
             )}
-            {history.length === 0 && <li className='list-group-item'>No records found</li>}
+            {history.length === 0 && <li className='list-group-item'>No records.</li>}
           </ul>
         </div>
       </div>

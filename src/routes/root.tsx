@@ -4,7 +4,14 @@ import { Outlet, NavLink } from 'react-router-dom'
 export default function Root() {
   return (
     <>
-      <div className='container-fluid'>
+      <div className='container-fluid position-relative'>
+        <div className='position-fixed bottom-0 start-5'>
+          <p>MIT Open Source</p>
+          <p>
+            &copy; 2024 <a href='https://jream.com'>JREAM</a> | Jesse Boyer
+          </p>
+        </div>
+
         <div className='row'>
           <nav className='col-md-2 d-none d-md-block bg-light sidebar'>
             <h6 className='sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted'>
@@ -14,6 +21,11 @@ export default function Root() {
               <li className='nav-item'>
                 <NavLink to='/' className='nav-link'>
                   Home
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink to='/dictionary' className='nav-link'>
+                  Dictionary
                 </NavLink>
               </li>
               <li className='nav-item'>
