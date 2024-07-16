@@ -1,13 +1,27 @@
 # React Apps
 
-Having in a little playground fun making small components for demo purposes.
+A small playground of miniature React Components for fun.
 
-- **Preview:** [https://jream.github.io/react-apps/](https://jream.github.io/react-apps/)
-- [Vite](https://vitejs.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [PNPM](https://pnpm.io/)
-- [React](https://react.dev/)
-- [React Router](https://reactrouter.com/en/main)
+- **Preview**
+  - [https://jream.github.io/react-apps/](https://jream.github.io/react-apps/)
+- **Transpile**
+  - [PNPM](https://pnpm.io/)
+  - [Vite](https://vitejs.dev/)
+    - [Vite Plugin Checker](https://www.npmjs.com/package/vite-plugin-checker) - For Live TypeScript Checking
+  - [TypeScript](https://www.typescriptlang.org/)
+- **Core**
+  - [React](https://react.dev/)
+  - [React Router](https://reactrouter.com/en/main)
+- **Testing**
+  - [Vitest](https://vitest.dev/)
+  - [JSDom](https://github.com/jsdom/jsdom)
+  - [@testing-library/react](https://testing-library.com/)
+- **Frontend**
+  - [Bootstrap](https://getbootstrap.com/)
+  - [PopperJS](https://popper.js.org/)
+  - [SASS](https://www.npmjs.com/package/sass)
+- **Considering**
+  - Might want [PurgeCSS](https://purgecss.com/) also later..
 
 ## Installation
 
@@ -29,8 +43,8 @@ At the moment I'm using [Vite](https://vitejs.dev/) and a minimal React setup.
 These two items in `package.json` are part of the `gh-pages` npm package:
 
 ```json
-  "predeploy": "pnpm run build",
-  "deploy": "gh-pages -d dist",
+"predeploy": "pnpm run build",
+"deploy": "gh-pages -d dist",
 ```
 
 Simply run, `npm run deploy` and it will create a branch and transpile the project.

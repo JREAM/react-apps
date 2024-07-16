@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Outlet, NavLink } from 'react-router-dom'
 
-export default function Root() {
+export default () => {
   return (
     <>
       <div className='container-fluid position-relative'>
@@ -46,6 +46,21 @@ export default function Root() {
               <li className='nav-item'>
                 <NavLink to='/textsearch' className='nav-link'>
                   Text Search
+                </NavLink>
+              </li>
+            </ul>
+            <h6 className='sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted'>
+              <span>Elements</span>
+            </h6>
+            <ul className='ul-flex'>
+              <li className='nav-item'>
+                <NavLink to='/elements/inputs' className='nav-link'>
+                  Inputs
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink to='/elements/buttons' className='nav-link'>
+                  Buttons
                 </NavLink>
               </li>
             </ul>

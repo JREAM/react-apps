@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from 'react-dom/client'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 
-import Root from './routes/root'
+import Layout from './layout'
 import ErrorPage from './error-page'
 import Home from 'routes/home'
 
@@ -12,12 +12,17 @@ import Stopwatch from 'routes/stopwatch'
 import TextSearch from 'routes/textSearch'
 import Todo from 'routes/todo'
 
-import './index.css'
+import ElementsButtons from 'routes/elements/buttons'
+import ElementsInputs from 'routes/elements/inputs'
+
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import './styles/custom.scss'
+import './styles/index.scss'
 
 const router = createHashRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -43,6 +48,14 @@ const router = createHashRouter([
       {
         path: 'todo',
         element: <Todo />,
+      },
+      {
+        path: 'elements/buttons',
+        element: <ElementsButtons />,
+      },
+      {
+        path: 'elements/inputs',
+        element: <ElementsInputs />,
       },
     ],
   },
