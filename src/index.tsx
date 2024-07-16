@@ -4,9 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Root from './routes/root'
 import ErrorPage from './error-page'
-import Password from 'routes/password'
-import Todo from 'routes/todo'
 import Home from 'routes/home'
+
+import Password from 'routes/password'
+import Stopwatch from 'routes/stopwatch'
+import Todo from 'routes/todo'
 
 import './index.css'
 
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'todo',
         element: <Todo />,
+      },
+      {
+        path: 'stopwatch',
+        element: <Stopwatch />,
       },
     ],
   },

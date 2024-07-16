@@ -22,6 +22,11 @@ export default function Root() {
                 </NavLink>
               </li>
               <li className='nav-item'>
+                <NavLink to='/stopwatch' className='nav-link'>
+                  Stopwatch
+                </NavLink>
+              </li>
+              <li className='nav-item'>
                 <NavLink to='/todo' className='nav-link'>
                   Todo
                 </NavLink>
