@@ -2,8 +2,7 @@
 
 - [Vite](https://vitejs.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-
- 📖 **[Preview Project](https://jream.github.io/react-passwd/)**
+- **Preview:** [https://jream.github.io/react-apps/](https://jream.github.io/react-apps/)
 
 ## Installation
 
