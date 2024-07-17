@@ -90,7 +90,17 @@ export default () => {
     <>
       <h1>Password Generator</h1>
       <p>Simple Password Generator in React.</p>
-      <input readOnly type='text' className='form-control border border-secondary' value={password} />
+      <div className='form-floating mb-3'>
+        <input
+          readOnly
+          type='text'
+          placeholder='Password'
+          id='inputPassword'
+          className='form-control border border-secondary'
+          value={password}
+        />
+        <label htmlFor='inputPassword'>Password</label>
+      </div>
       <button type='submit' onClick={copyPassword} className='btn btn-secondary mb-3'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -109,6 +119,7 @@ export default () => {
       <button type='submit' onClick={generatePassword} className='btn btn-primary mb-3'>
         Refresh
       </button>
+
       <label className='form-label'>
         Length: <span className='badge bg-primary'>{settings.length}</span>
       </label>

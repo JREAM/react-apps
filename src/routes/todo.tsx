@@ -53,6 +53,10 @@ export default function TaskList() {
     if (event.key === 'Enter') {
       addTask()
     }
+    // Cast the event to an HTMLInput to get the value
+    // const input = event.target as HTMLInputElement
+    // console.log(input.value)
+    // if (input.value !== '') {}
   }
 
   const handleKeyDownEdit = (event: KeyboardEvent<HTMLInputElement>, id: number) => {
@@ -75,25 +79,26 @@ export default function TaskList() {
           Listens for <kbd>Enter</kbd> and <kbd>Escape</kbd>
         </li>
       </ul>
-      <div className='input-group mb-3'>
-        <input
-          className='form-control'
-          type='text'
-          maxLength={80}
-          value={newTask}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setNewTask(e.target.value)}
-          onKeyDown={handleKeyDownAdd}
-          placeholder='Add new task'
-        />
-        <button onClick={addTask} className='btn btn-outline-secondary'>
-          Add
-        </button>
+      <div className='input-group'>
+        <div className='form-floating mb-3'>
+          <input
+            className='form-control'
+            type='text'
+            maxLength={80}
+            value={newTask}
+            id='inputTask'
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewTask(e.target.value)}
+            onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => handleKeyDownAdd(e)}
+            placeholder='New task'
+          />
+          <label htmlFor='inputTask'>New Task</label>
+        </div>
       </div>
-      <ul className='list-group'>
+      <div className='container'>
         {tasks.map((task) => (
-          <li key={task.id} className='list-group-item d-flex justify-content-between align-items-center'>
+          <div key={task.id} className='row mb-3'>
             {isEditing === task.id ? (
-              <>
+              <div className='col'>
                 <div className='input-group mb-3'>
                   <input
                     className='form-control'
@@ -101,6 +106,7 @@ export default function TaskList() {
                     type='text'
                     maxLength={80}
                     value={editTask}
+                    onBlur={() => setIsEditing(null)}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setEditTask(e.target.value)}
                     onKeyDown={(e) => handleKeyDownEdit(e, task.id)}
                   />
@@ -111,27 +117,31 @@ export default function TaskList() {
                     Cancel
                   </button>
                 </div>
-              </>
+              </div>
             ) : (
               <>
-                {task.text}
-                <button
-                  className='btn btn-primary'
-                  onClick={() => {
-                    setIsEditing(task.id)
-                    setEditTask(task.text)
-                  }}
-                >
-                  Edit
-                </button>
-                <button className='btn btn-danger' onClick={() => deleteTask(task.id)}>
-                  Delete
-                </button>
+                <div className='col'>{task.text}</div>
+                <div className='col'>
+                  <button
+                    className='btn btn-primary'
+                    onClick={() => {
+                      setIsEditing(task.id)
+                      setEditTask(task.text)
+                    }}
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div className='col'>
+                  <button className='btn btn-danger' onClick={() => deleteTask(task.id)}>
+                    Delete
+                  </button>
+                </div>
               </>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

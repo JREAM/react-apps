@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './calculator.css'
+import '../styles/calculator.css'
 
 // Redo this in bootstrap grid CSS
 
@@ -30,7 +30,7 @@ export default () => {
       </div>
       <div className='calculator-buttons'>
         {['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=', '+', 'C'].map((btn) => (
-          <button key={btn} onClick={() => handleButtonClick(btn)}>
+          <button className='btn' key={btn} onClick={() => handleButtonClick(btn)}>
             {btn}
           </button>
         ))}
