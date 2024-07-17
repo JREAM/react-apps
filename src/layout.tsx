@@ -24,6 +24,11 @@ export default () => {
                 </NavLink>
               </li>
               <li className='nav-item'>
+                <NavLink to='/calculator' className='nav-link'>
+                  Calculator <em>(WIP)</em>
+                </NavLink>
+              </li>
+              <li className='nav-item'>
                 <NavLink to='/dictionary' className='nav-link'>
                   Dictionary
                 </NavLink>
@@ -44,8 +49,13 @@ export default () => {
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink to='/textsearch' className='nav-link'>
-                  Text Search
+                <NavLink to='/searchtext' className='nav-link'>
+                  Search Text
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink to='/searchbible' className='nav-link'>
+                  Search Bible <em>(WIP)</em>
                 </NavLink>
               </li>
             </ul>

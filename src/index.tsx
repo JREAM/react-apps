@@ -6,10 +6,12 @@ import Layout from './layout'
 import ErrorPage from './error-page'
 import Home from 'routes/home'
 
+import Calculator from 'routes/calculator'
 import Dictionary from 'routes/dictionary'
 import Password from 'routes/password'
+import SearchText from 'routes/searchText'
 import Stopwatch from 'routes/stopwatch'
-import TextSearch from 'routes/textSearch'
+import SearchBible from 'routes/searchBible'
 import Todo from 'routes/todo'
 
 import ElementsButtons from 'routes/elements/buttons'
@@ -30,6 +32,10 @@ const router = createHashRouter([
         element: <Home />,
       },
       {
+        path: 'calculator',
+        element: <Calculator />,
+      },
+      {
         path: 'dictionary',
         element: <Dictionary />,
       },
@@ -42,8 +48,12 @@ const router = createHashRouter([
         element: <Stopwatch />,
       },
       {
-        path: 'textsearch',
-        element: <TextSearch />,
+        path: 'searchbible',
+        element: <SearchBible />,
+      },
+      {
+        path: 'searchtext',
+        element: <SearchText />,
       },
       {
         path: 'todo',
