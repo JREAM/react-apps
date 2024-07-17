@@ -17,9 +17,7 @@ A small playground of miniature React Components for fun.
   - [JSDom](https://github.com/jsdom/jsdom)
   - [@testing-library/react](https://testing-library.com/)
 - **Frontend**
-  - [Bootstrap](https://getbootstrap.com/)
-  - [PopperJS](https://popper.js.org/)
-  - [SASS](https://www.npmjs.com/package/sass)
+  - [Bootstrap](https://getbootstrap.com/) <em>(External)<em>
 - **Considering**
   - Might want [PurgeCSS](https://purgecss.com/) also later..
 

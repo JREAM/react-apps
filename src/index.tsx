@@ -17,10 +17,6 @@ import Todo from 'routes/todo'
 import ElementsButtons from 'routes/elements/buttons'
 import ElementsInputs from 'routes/elements/inputs'
 
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import './styles/custom.scss'
-import './styles/index.scss'
-
 const router = createHashRouter([
   {
     path: '/',
